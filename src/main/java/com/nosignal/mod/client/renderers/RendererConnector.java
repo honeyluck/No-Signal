@@ -26,7 +26,7 @@ public class RendererConnector extends TileEntitySpecialRenderer<TileEntityConne
 	public void render(TileEntityConnector te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(!te.getConnection().equals(BlockPos.ORIGIN)) {
 			GlStateManager.pushMatrix();
-			GlStateManager.translate(x + 0.5, y + 1, z + 0.5);
+			GlStateManager.translate(x + 0.5, y + 0.25, z + 0.5);
 			mc.getTextureManager().bindTexture(new ResourceLocation(NoSignal.MODID, "textures/blocks/wire.png"));
 			BufferBuilder bb = Tessellator.getInstance().getBuffer();
 			bb.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_TEX);

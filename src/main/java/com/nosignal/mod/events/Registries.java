@@ -81,6 +81,7 @@ public class Registries {
         public static void init() {
         	
         	connector = register(new BlockConnector(), "connector");
+
         }
         
         public static Block register(Block block, String name) {

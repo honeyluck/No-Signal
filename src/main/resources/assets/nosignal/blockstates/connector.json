@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=y":  { "model": "nosignal:connector" },
+    "axis=z":   { "model": "nosignal:connector", "x": 90 },
+    "axis=x":   { "model": "nosignal:connector", "x": 90, "y": 90 },
+    "axis=none": { "model": "nosignal:connector" },
+    "normal": {"model": "nosignal:connector"},
+    "inventory": {"model": "nosignal:connector"}
+  }
+}
