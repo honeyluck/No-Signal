@@ -1,0 +1,5 @@
+itemGroup.nosignal=No Signal
+
+item.nosignal:wire.name=Wire Coil
+
+tile.nosignal:connector.name=Connector
