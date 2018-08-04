@@ -27,6 +27,12 @@ public class BlockConnector extends BlockTileBase {
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return BOX;
 	}
+
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
 	@Override
     public boolean isOpaqueCube(IBlockState state) {
 	    return false;

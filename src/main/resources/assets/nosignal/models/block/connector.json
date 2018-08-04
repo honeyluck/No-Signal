@@ -130,9 +130,9 @@
 			"translation": [0, 5.5, 0]
 		},
 		"gui": {
-			"scale": [0.625, 0.625, 0.625],
+			"scale": [1.0, 1.0, 1.0],
 			"rotation": [30, 225, 0],
-			"translation": [0, 3.5, 0]
+			"translation": [0, 6, 0]
 		}
 	}
 }
