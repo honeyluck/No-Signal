@@ -2,12 +2,14 @@ package com.nosignal.mod.tileentity;
 
 import com.nosignal.mod.interfaces.IEnergyConnector;
 
+import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
@@ -79,6 +81,12 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
 			if(!world.isRemote) {
 				for(EntityPlayerMP player : world.getEntitiesWithinAABB(EntityPlayerMP.class, Block.FULL_BLOCK_AABB.offset(this.getPos()).grow(40))) {
 					player.connection.sendPacket(getUpdatePacket());
+				}
+			}
+			for(EnumFacing f : EnumFacing.values()) {
+				TileEntity power = world.getTileEntity(getPos().offset(f));
+				if(power != null && power instanceof IEnergyReceiver) {
+					((IEnergyReceiver)power).receiveEnergy(f.getOpposite(), 10, false);
 				}
 			}
 		}
