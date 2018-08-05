@@ -34,6 +34,7 @@ public class RendererConnector extends TileEntitySpecialRenderer<TileEntityConne
 			bb.pos(0, 0, 0).tex(0, 0).endVertex();
 			bb.pos(te.getConnection().getX() - te.getPos().getX(), te.getConnection().getY() - te.getPos().getY(), te.getConnection().getZ() - te.getPos().getZ()).tex(1, 1).endVertex();
 			Tessellator.getInstance().draw();
+			GL11.glLineWidth(1F);
 			GlStateManager.popMatrix();
 		}
 	}
