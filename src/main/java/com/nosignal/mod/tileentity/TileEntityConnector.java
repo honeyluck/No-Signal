@@ -10,13 +10,17 @@ import cofh.redstoneflux.api.IEnergyProvider;
 import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityConnector extends TileEntity implements IEnergyConnector, ITickable, IEnergyProvider {
 	
@@ -31,25 +35,19 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		String[] points = tag.getString(NBT.CONNECTION_POINT_STR).split("\t");
-		for (String point : points) {
-		    long l;
-		    try {
-		        l = Long.parseLong(point.replace("\t", ""));
-                this.connectionPoints.add(BlockPos.fromLong(l));
-            } catch (NumberFormatException e) {
-		        e.printStackTrace();
-            }
+		NBTTagList list = tag.getTagList(NBT.CONNECTION_POINT, Constants.NBT.TAG_LONG);
+		for(NBTBase base : list) {
+			this.connectionPoints.add(BlockPos.fromLong(((NBTTagLong)base).getLong()));
 		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		StringBuilder sb = new StringBuilder();
-		for (BlockPos pos : connectionPoints){
-			sb.append(pos.toLong() + "\t");
+		NBTTagList list = new NBTTagList();
+		for(BlockPos pos : this.connectionPoints) {
+			list.appendTag(new NBTTagLong(pos.toLong()));
 		}
-		tag.setString(NBT.CONNECTION_POINT_STR, sb.toString());
+		tag.setTag(NBT.CONNECTION_POINT, list);
 		return super.writeToNBT(tag);
 	}
 
@@ -101,7 +99,7 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
                     connections.remove();
                 }
             }
-			if(!world.isRemote) {
+			if(!world.isRemote && world.getWorldTime() % 10 == 0) {
 				for(EntityPlayerMP player : world.getEntitiesWithinAABB(EntityPlayerMP.class, Block.FULL_BLOCK_AABB.offset(this.getPos()).grow(40))) {
 					player.connection.sendPacket(getUpdatePacket());
 				}
