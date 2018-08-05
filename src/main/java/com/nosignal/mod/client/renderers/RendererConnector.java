@@ -1,5 +1,9 @@
 package com.nosignal.mod.client.renderers;
 
+import com.nosignal.mod.blocks.BlockConnector;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 
 import com.nosignal.mod.main.NoSignal;
@@ -24,17 +28,34 @@ public class RendererConnector extends TileEntitySpecialRenderer<TileEntityConne
 
 	@Override
 	public void render(TileEntityConnector te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		if(!te.getConnection().equals(BlockPos.ORIGIN)) {
+		for (BlockPos connection : te.getConnections()) {
+			IBlockState originState = te.getWorld().getBlockState(te.getPos());
+			IBlockState connectionState = te.getWorld().getBlockState(connection);
+			if (originState == null || originState.getValue(BlockConnector.FACING) == null) {
+				continue;
+			}
+			if (connectionState == null || connectionState.getValue(BlockConnector.FACING) == null) {
+				continue;
+			}
+			Vec3d originInLoc = originState.getValue(BlockConnector.FACING).getOriginInBlock();
+			Vec3d connectionInLoc = connectionState.getValue(BlockConnector.FACING).getOriginInBlock();
+			Vec3d originLoc = originInLoc.addVector(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ());
+			Vec3d connectionLoc = connectionInLoc.addVector(connection.getX(), connection.getY(), connection.getZ());
+
+			Vec3d diffInLoc = connectionInLoc.subtract(originInLoc);
+
 			GlStateManager.pushMatrix();
-			GlStateManager.translate(x + 0.5, y + 0.25, z + 0.5);
+			GlStateManager.translate(x, y, z);
 			mc.getTextureManager().bindTexture(new ResourceLocation(NoSignal.MODID, "textures/blocks/wire.png"));
-			BufferBuilder bb = Tessellator.getInstance().getBuffer();
-			bb.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_TEX);
-			GL11.glLineWidth(8F);
-			bb.pos(0, 0, 0).tex(0, 0).endVertex();
-			bb.pos(te.getConnection().getX() - te.getPos().getX(), te.getConnection().getY() - te.getPos().getY(), te.getConnection().getZ() - te.getPos().getZ()).tex(1, 1).endVertex();
-			Tessellator.getInstance().draw();
-			GL11.glLineWidth(1F);
+			{
+				BufferBuilder bb = Tessellator.getInstance().getBuffer();
+				bb.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_TEX);
+				GL11.glLineWidth(8F);
+				bb.pos(originInLoc.x, originInLoc.y, originInLoc.z).tex(0, 0).endVertex();
+				bb.pos((connectionLoc.x + connectionInLoc.x) - originLoc.x - diffInLoc.x,   (connectionLoc.y + connectionInLoc.y) - originLoc.y - diffInLoc.y, (connectionLoc.z + connectionInLoc.z) - originLoc.z - diffInLoc.z).tex(1, 1).endVertex();
+				Tessellator.getInstance().draw();
+				GL11.glLineWidth(1F);
+			}
 			GlStateManager.popMatrix();
 		}
 	}

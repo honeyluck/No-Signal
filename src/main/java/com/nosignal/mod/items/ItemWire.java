@@ -35,8 +35,8 @@ public class ItemWire extends Item {
 			if(tag.hasKey(NBT.START_POINT)) {
 				BlockPos startPos = BlockPos.fromLong(tag.getLong(NBT.START_POINT));
 				if(startPos.distanceSq(pos) < Math.pow(16, 2)) {
-					((IEnergyConnector)worldIn.getTileEntity(pos)).setConnection(BlockPos.fromLong(tag.getLong(NBT.START_POINT)));
-					((IEnergyConnector)worldIn.getTileEntity(BlockPos.fromLong(tag.getLong(NBT.START_POINT)))).setConnection(pos);
+					((IEnergyConnector)worldIn.getTileEntity(pos)).addConnection(BlockPos.fromLong(tag.getLong(NBT.START_POINT)));
+					((IEnergyConnector)worldIn.getTileEntity(BlockPos.fromLong(tag.getLong(NBT.START_POINT)))).addConnection(pos);
 					player.getHeldItem(hand).setTagCompound(new NBTTagCompound());
 					player.getHeldItem(hand).shrink(1);
 				}

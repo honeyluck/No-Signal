@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"atlas": "nosignal:blocks/copper_block"
+		"atlas": "nosignal:blocks/copper_block",
+		"facing=south": "nosignal:blocks/copper_block"
 	},
 	"elements": [
 		{
@@ -130,9 +131,9 @@
 			"translation": [0, 5.5, 0]
 		},
 		"gui": {
-			"scale": [0.625, 0.625, 0.625],
+			"scale": [1.0, 1.0, 1.0],
 			"rotation": [30, 225, 0],
-			"translation": [0, 3.5, 0]
+			"translation": [0, 6, 0]
 		}
 	}
 }
