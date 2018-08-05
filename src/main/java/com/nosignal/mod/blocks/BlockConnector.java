@@ -18,6 +18,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -248,28 +249,34 @@ public class BlockConnector extends BlockTileBase {
 
 	public static enum EnumOrientation implements IStringSerializable
 	{
-		DOWN_X(0, "down_x", EnumFacing.DOWN),
-		EAST(1, "east", EnumFacing.EAST),
-		WEST(2, "west", EnumFacing.WEST),
-		SOUTH(3, "south", EnumFacing.SOUTH),
-		NORTH(4, "north", EnumFacing.NORTH),
-		UP_Z(5, "up_z", EnumFacing.UP),
-		UP_X(6, "up_x", EnumFacing.UP),
-		DOWN_Z(7, "down_z", EnumFacing.DOWN);
+		DOWN_X(0, "down_x", EnumFacing.DOWN, new Vec3d(0.5D, 0.75D,0.5D)),
+		EAST(1, "east", EnumFacing.EAST, new Vec3d(0.25D, 0.5D,0.5D)),
+		WEST(2, "west", EnumFacing.WEST, new Vec3d(0.75D, 0.5D,0.5D)),
+		SOUTH(3, "south", EnumFacing.SOUTH, new Vec3d(0.5D, 0.5D,0.25D)),
+		NORTH(4, "north", EnumFacing.NORTH, new Vec3d(0.5D, 0.5D,0.75D)),
+		UP_Z(5, "up_z", EnumFacing.UP, new Vec3d(0.5D, 0.25D,0.5D)),
+		UP_X(6, "up_x", EnumFacing.UP, new Vec3d(0.5D, 0.25D,0.5D)),
+		DOWN_Z(7, "down_z", EnumFacing.DOWN, new Vec3d(0.5D, 0.75D,0.5D));
 
 		private static final BlockConnector.EnumOrientation[] META_LOOKUP = new BlockConnector.EnumOrientation[values().length];
 		private final int meta;
 		private final String name;
 		private final EnumFacing facing;
+		private final Vec3d originInBlock;
 
-		private EnumOrientation(int meta, String name, EnumFacing facing)
+		EnumOrientation(int meta, String name, EnumFacing facing, Vec3d originInBlock)
 		{
 			this.meta = meta;
 			this.name = name;
 			this.facing = facing;
+			this.originInBlock = originInBlock;
 		}
 
-		public int getMetadata()
+        public Vec3d getOriginInBlock() {
+            return originInBlock;
+        }
+
+        public int getMetadata()
 		{
 			return this.meta;
 		}
