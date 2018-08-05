@@ -1,10 +1,13 @@
 {
   "variants": {
-    "axis=y":  { "model": "nosignal:connector" },
-    "axis=z":   { "model": "nosignal:connector", "x": 90 },
-    "axis=x":   { "model": "nosignal:connector", "x": 90, "y": 90 },
-    "axis=none": { "model": "nosignal:connector" },
-    "normal": {"model": "nosignal:connector"},
-    "inventory": {"model": "nosignal:connector"}
+    "inventory": { "model": "nosignal:connector" },
+    "facing=down_z": { "model": "nosignal:connector", "x": 180, "y": 180 },
+    "facing=down_x": { "model": "nosignal:connector", "x": 180, "y": 90 },
+    "facing=up_z": { "model": "nosignal:connector" },
+    "facing=up_x": { "model": "nosignal:connector", "y": 270 },
+    "facing=east": { "model": "nosignal:connector", "x": 90, "y": 90 },
+    "facing=west": { "model": "nosignal:connector", "x": 90, "y": 270 },
+    "facing=south": { "model": "nosignal:connector", "x": 90, "y": 180 },
+    "facing=north": { "model": "nosignal:connector", "x": 90 }
   }
 }

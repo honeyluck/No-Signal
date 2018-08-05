@@ -1,5 +1,8 @@
 package com.nosignal.mod.client.renderers;
 
+import com.nosignal.mod.blocks.BlockConnector;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import org.lwjgl.opengl.GL11;
 
 import com.nosignal.mod.main.NoSignal;
@@ -27,6 +30,11 @@ public class RendererConnector extends TileEntitySpecialRenderer<TileEntityConne
 		if(!te.getConnection().equals(BlockPos.ORIGIN)) {
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(x + 0.5, y + 0.25, z + 0.5);
+			IBlockState blockState = te.getWorld().getBlockState(te.getConnection());
+			System.out.println(blockState.getProperties().get("facing"));
+			if (blockState.getProperties().get("facing").equals(BlockConnector.EnumOrientation.SOUTH)) {
+				System.out.println("hi");
+			}
 			mc.getTextureManager().bindTexture(new ResourceLocation(NoSignal.MODID, "textures/blocks/wire.png"));
 			BufferBuilder bb = Tessellator.getInstance().getBuffer();
 			bb.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_TEX);
