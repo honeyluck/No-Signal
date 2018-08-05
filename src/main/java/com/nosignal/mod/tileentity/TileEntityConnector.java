@@ -1,7 +1,12 @@
 package com.nosignal.mod.tileentity;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.nosignal.mod.interfaces.IEnergyConnector;
 
+import cofh.redstoneflux.api.IEnergyProvider;
 import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,14 +18,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-public class TileEntityConnector extends TileEntity implements IEnergyConnector, ITickable {
+public class TileEntityConnector extends TileEntity implements IEnergyConnector, ITickable, IEnergyProvider {
 	
 	public List<BlockPos> connectionPoints = new ArrayList<>();
+	public static final int MAX_POWER = 256;
+	public int power = 0;
 	
 	public TileEntityConnector() {
 		
@@ -112,5 +114,25 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
 			}
 		}
 
+	}
+
+	@Override
+	public int getEnergyStored(EnumFacing arg0) {
+		return 10;
+	}
+
+	@Override
+	public int getMaxEnergyStored(EnumFacing arg0) {
+		return this.MAX_POWER;
+	}
+
+	@Override
+	public boolean canConnectEnergy(EnumFacing arg0) {
+		return true;
+	}
+
+	@Override
+	public int extractEnergy(EnumFacing face, int amt, boolean sim) {
+		return 10;
 	}
 }
