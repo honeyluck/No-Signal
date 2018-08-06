@@ -32,6 +32,12 @@ public class NoSignal {
 			public ItemStack getTabIconItem() {
 				return new ItemStack(Blocks.connector);
 			}};
+    	beesTabs = new CreativeTabs(MODID + " bees") {
+            @Override
+            public ItemStack getTabIconItem() {
+                return new ItemStack(Blocks.hive);
+            }
+        };
     	Registries.registerTileEntity(TileEntityConnector.class, "TileEntityConnector");
     	
     	proxy.preInit();
