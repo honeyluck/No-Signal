@@ -1,27 +1,29 @@
 package com.nosignal.mod.blocks;
 
-import java.util.function.Supplier;
-
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.world.World;
 
-public class BlockTileBase extends BlockContainer{
+import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
-	Supplier<TileEntity> tile;
+public class BlockTileBase extends Block {
+
+    private Supplier<TileEntity> tile;
 	
 	public BlockTileBase(Material materialIn, Supplier<TileEntity> te) {
 		super(materialIn);
 		this.tile = te;
 	}
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return tile.get();
-	}
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return tile.get();
+    }
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -38,4 +40,13 @@ public class BlockTileBase extends BlockContainer{
 		return false;
 	}
 
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean hasTileEntity() {
+        return true;
+    }
 }

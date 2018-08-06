@@ -1,17 +1,12 @@
 package com.nosignal.mod.events;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nosignal.mod.blocks.BlockConnector;
 import com.nosignal.mod.blocks.BlockHive;
 import com.nosignal.mod.items.ItemBeeDrone;
 import com.nosignal.mod.items.ItemBeeQueen;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.main.NoSignal;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,6 +19,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EventBusSubscriber
 public class Registries {
 
@@ -33,19 +31,13 @@ public class Registries {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> e) {
         Blocks.init();
-        for(Block block : BLOCKS) {
-            e.getRegistry().register(block);
-            System.out.println(block);
-        }
+        e.getRegistry().registerAll(BLOCKS.toArray(new Block[BLOCKS.size()]));
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> e) {
         Items.init();
-        for(Item item : ITEMS) {
-            e.getRegistry().register(item);
-            System.out.println(item);
-        }
+        e.getRegistry().registerAll(ITEMS.toArray(new Item[ITEMS.size()]));
     }
 
     @SubscribeEvent
@@ -80,15 +72,15 @@ public class Registries {
         }
     }
 
+    //this init stuff kills me!!!! use objectholders pls!!!!!! ~sub
+
     public static class Blocks {
     	
     	public static Block connector, hive;
     	
         public static void init() {
-        	
         	connector = register(new BlockConnector(), "connector");
         	hive = register(new BlockHive(),"hive");
-
         }
         
         public static Block register(Block block, String name) {
