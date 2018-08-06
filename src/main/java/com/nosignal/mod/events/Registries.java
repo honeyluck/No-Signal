@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.nosignal.mod.blocks.BlockConnector;
 import com.nosignal.mod.blocks.BlockHive;
+import com.nosignal.mod.items.ItemBeeDrone;
+import com.nosignal.mod.items.ItemBeeQueen;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.main.NoSignal;
 
@@ -62,10 +64,12 @@ public class Registries {
 
     public static class Items {
     	
-    	public static Item wire;
+    	public static Item wire, bee_drone, bee_queen;
     	
         public static void init() {
         	wire = register(new ItemWire(), "wire");
+        	bee_drone = register(new ItemBeeDrone(),"drone");
+        	bee_queen = register(new ItemBeeQueen(),"queen");
         }
         
         public static Item register(Item item, String name) {
