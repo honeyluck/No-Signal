@@ -1,5 +1,9 @@
 itemGroup.nosignal=No Signal
+itemGroup.nosignal bees=No Signal Bees
 
 item.nosignal:wire.name=Bobine de fil
+item.nosignal:drone.name=Abeille ouvrière
+item.nosignal:queen.name=Reine des abeilles
 
 tile.nosignal:connector.name=Connecteur
+tile.nosignal:hive.name=Ruche

@@ -1,5 +1,9 @@
 itemGroup.nosignal=No Signal
+itemGroup.nosignal bees=No Signal Bees
 
 item.nosignal:wire.name=Wire Coil
+item.nosignal:drone.name=Bee Drone
+item.nosignal:queen.name=Bee Queen
 
 tile.nosignal:connector.name=Connector
+tile.nosignal:hive.name=Hive
