@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nosignal.mod.blocks.BlockConnector;
+import com.nosignal.mod.blocks.BlockHive;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.main.NoSignal;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -76,11 +78,12 @@ public class Registries {
 
     public static class Blocks {
     	
-    	public static Block connector;
+    	public static Block connector, hive;
     	
         public static void init() {
         	
         	connector = register(new BlockConnector(), "connector");
+        	hive = register(new BlockHive(),"hive");
 
         }
         
