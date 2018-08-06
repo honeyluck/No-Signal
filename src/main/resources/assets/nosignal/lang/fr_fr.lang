@@ -1,0 +1,5 @@
+itemGroup.nosignal=No Signal
+
+item.nosignal:wire.name=Bobine de fil
+
+tile.nosignal:connector.name=Connecteur
