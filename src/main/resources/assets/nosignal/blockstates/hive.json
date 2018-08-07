@@ -1,0 +1,6 @@
+{
+  "variants":{
+    "inventory": { "model": "nosignal:hive" },
+    "normal":{ "model":"nosignal:hive" }
+  }
+}
