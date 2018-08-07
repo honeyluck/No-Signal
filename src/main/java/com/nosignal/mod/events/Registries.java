@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nosignal.mod.blocks.BlockConnector;
+import com.nosignal.mod.blocks.BlockLaser;
+import com.nosignal.mod.blocks.INeedItem;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.main.NoSignal;
 
@@ -77,10 +79,13 @@ public class Registries {
     public static class Blocks {
     	
     	public static Block connector;
+    	public static Block laser_emmiter;
     	
         public static void init() {
         	
         	connector = register(new BlockConnector(), "connector");
+        	
+        	laser_emmiter = register(new BlockLaser(), "laser_emmiter");
 
         }
         
@@ -89,7 +94,8 @@ public class Registries {
         	block.setUnlocalizedName(rl.toString());
         	block.setRegistryName(rl);
         	BLOCKS.add(block);
-        	ITEMS.add(new ItemBlock(block).setRegistryName(rl));
+        	if(!(block instanceof INeedItem))ITEMS.add(new ItemBlock(block).setRegistryName(rl));
+        	else ITEMS.add(((INeedItem)block).getItem().setRegistryName(rl));
         	return block;
         }
     }

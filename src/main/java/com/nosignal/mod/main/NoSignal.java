@@ -3,6 +3,7 @@ package com.nosignal.mod.main;
 import com.nosignal.mod.events.Registries;
 import com.nosignal.mod.events.Registries.Blocks;
 import com.nosignal.mod.tileentity.TileEntityConnector;
+import com.nosignal.mod.tileentity.TileEntityLaser;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,7 @@ public class NoSignal {
 				return new ItemStack(Blocks.connector);
 			}};
     	Registries.registerTileEntity(TileEntityConnector.class, "TileEntityConnector");
+    	Registries.registerTileEntity(TileEntityLaser.class, "TileEntityLaser");
     	
     	proxy.preInit();
     }
