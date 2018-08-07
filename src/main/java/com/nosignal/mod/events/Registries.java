@@ -8,6 +8,7 @@ import com.nosignal.mod.items.bee.ItemBeeDrone;
 import com.nosignal.mod.items.bee.ItemBeeQueen;
 import com.nosignal.mod.items.bee.ItemHoneyComb;
 import com.nosignal.mod.tileentity.TileEntityConnector;
+import com.nosignal.mod.tileentity.TileEntityHive;
 import com.nosignal.mod.tileentity.TileEntityLaser;
 import com.nosignal.mod.util.common.RegUtils;
 import net.minecraft.block.Block;
@@ -56,6 +57,7 @@ public class Registries {
     private static void regTiles() {
         RegUtils.addTile(TileEntityConnector.class, "TileEntityConnector");
         RegUtils.addTile(TileEntityLaser.class, "TileEntityLaser");
+        RegUtils.addTile(TileEntityHive.class,"TileEntityHive");
     }
 
     @SubscribeEvent
