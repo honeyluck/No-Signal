@@ -1,13 +1,6 @@
 package com.nosignal.mod.tileentity;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import com.nosignal.mod.interfaces.IEnergyConnector;
-
-import cofh.redstoneflux.api.IEnergyProvider;
-import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
@@ -21,8 +14,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileEntityConnector extends TileEntity implements IEnergyConnector, ITickable, IEnergyProvider {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class TileEntityConnector extends TileEntity implements IEnergyConnector, ITickable, IEnergyStorage {
 	
 	public List<BlockPos> connectionPoints = new ArrayList<>();
 	public static final int MAX_POWER = 256;
@@ -73,7 +71,6 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
 
 	public static class NBT{
 		public static final String CONNECTION_POINT = "end_pos";
-		public static final String CONNECTION_POINT_STR = "end_pos_str";
 	}
 
 	@Override
@@ -104,33 +101,45 @@ public class TileEntityConnector extends TileEntity implements IEnergyConnector,
 					player.connection.sendPacket(getUpdatePacket());
 				}
 			}
-			for(EnumFacing f : EnumFacing.values()) {
-				TileEntity power = world.getTileEntity(getPos().offset(f));
-				if(power != null && power instanceof IEnergyReceiver) {
-					((IEnergyReceiver)power).receiveEnergy(f.getOpposite(), 10, false);
-				}
-			}
-		}
+        }
 
-	}
+        for (EnumFacing f : EnumFacing.values()) {
+            TileEntity te = world.getTileEntity(getPos().offset(f));
+            if (te != null && te instanceof IEnergyStorage) {
+                System.out.println("POWER!");
+            }
+        }
+
+    }
+
+    @Override
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+        return 10;
+    }
+
+    @Override
+    public int extractEnergy(int maxExtract, boolean simulate) {
+        return 10;
+    }
 
 	@Override
-	public int getEnergyStored(EnumFacing arg0) {
+    public int getEnergyStored() {
 		return 10;
 	}
 
 	@Override
-	public int getMaxEnergyStored(EnumFacing arg0) {
-		return this.MAX_POWER;
+    public int getMaxEnergyStored() {
+        return MAX_POWER;
 	}
 
 	@Override
-	public boolean canConnectEnergy(EnumFacing arg0) {
+    public boolean canExtract() {
 		return true;
 	}
 
 	@Override
-	public int extractEnergy(EnumFacing face, int amt, boolean sim) {
-		return 10;
-	}
+    public boolean canReceive() {
+        return true;
+    }
+	
 }

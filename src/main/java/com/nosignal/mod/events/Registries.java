@@ -2,10 +2,13 @@ package com.nosignal.mod.events;
 
 import com.nosignal.mod.blocks.BlockConnector;
 import com.nosignal.mod.blocks.BlockHive;
-import com.nosignal.mod.items.ItemBeeDrone;
-import com.nosignal.mod.items.ItemBeeQueen;
+import com.nosignal.mod.blocks.BlockLaser;
 import com.nosignal.mod.items.ItemWire;
+import com.nosignal.mod.items.bee.ItemBeeDrone;
+import com.nosignal.mod.items.bee.ItemBeeQueen;
+import com.nosignal.mod.items.bee.ItemHoneyComb;
 import com.nosignal.mod.tileentity.TileEntityConnector;
+import com.nosignal.mod.tileentity.TileEntityLaser;
 import com.nosignal.mod.util.common.RegUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -30,11 +33,12 @@ public class Registries {
     public static Item ITEM_WIRE = RegUtils.createItem(new ItemWire(), "wire");
     public static Item ITEM_BEE_DRONE = RegUtils.createItem(new ItemBeeDrone(), "drone");
     public static Item ITEM_BEE_QUEEN = RegUtils.createItem(new ItemBeeQueen(), "queen");
+    public static Item ITEM_HONEY_COMB = RegUtils.createItem(new ItemHoneyComb(), "honeycomb");
 
     //Blocks
     public static Block BLOCK_CONNECTOR = RegUtils.createBlock(new BlockConnector(), "connector");
     public static Block BLOCK_HIVE = RegUtils.createBlock(new BlockHive(), "hive");
-
+    public static Block BLOCK_LASER_EMITTER = RegUtils.createBlock(new BlockLaser(), "laser_emmiter");
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> e) {
@@ -51,6 +55,7 @@ public class Registries {
 
     private static void regTiles() {
         RegUtils.addTile(TileEntityConnector.class, "TileEntityConnector");
+        RegUtils.addTile(TileEntityLaser.class, "TileEntityLaser");
     }
 
     @SubscribeEvent
@@ -62,5 +67,4 @@ public class Registries {
             ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
     }
-
 }

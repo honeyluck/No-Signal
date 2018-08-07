@@ -14,9 +14,8 @@ public class NoSignal {
     public static final String MODID = "nosignal";
     public static final String NAME = "No Signal";
     public static final String VERSION = "1.0";
-    
-    public static CreativeTabs tab;
-    public static CreativeTabs beesTabs;
+
+    public static CreativeTabs tab, beesTabs;
 
     @SidedProxy(clientSide = "com.nosignal.mod.main.ClientProxy", serverSide = "com.nosignal.mod.main.CommonProxy")
     public static CommonProxy proxy;
@@ -30,7 +29,7 @@ public class NoSignal {
                 return new ItemStack(Registries.BLOCK_CONNECTOR);
 			}};
 
-    	beesTabs = new CreativeTabs(MODID + " bees") {
+        beesTabs = new CreativeTabs(MODID + " bees") {
             @Override
             public ItemStack getTabIconItem() {
                 return new ItemStack(Registries.BLOCK_HIVE);
