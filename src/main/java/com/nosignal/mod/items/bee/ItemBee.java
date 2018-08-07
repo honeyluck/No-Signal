@@ -3,6 +3,7 @@ package com.nosignal.mod.items.bee;
 import com.nosignal.mod.main.NoSignal;
 import com.nosignal.mod.util.BeeBaseConfig;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -65,7 +66,13 @@ public class ItemBee extends Item {
         bee.setTamed(stack,BeeBaseConfig.TAMED);
     }
 
-
+    @Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (!worldIn.isRemote && !stack.hasTagCompound()){
+            this.onCreated(stack,worldIn,(EntityPlayer)entityIn);
+        }
+        super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
 
     public class NBT{
         public static final String GENERATION = "bee_generation";
