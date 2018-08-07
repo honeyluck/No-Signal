@@ -20,7 +20,6 @@ public class NoSignal {
     public static final String VERSION = "1.0";
     
     public static CreativeTabs tab;
-    public static CreativeTabs beesTabs;
 
     @SidedProxy(clientSide = "com.nosignal.mod.main.ClientProxy", serverSide = "com.nosignal.mod.main.CommonProxy")
     public static CommonProxy proxy;
@@ -33,12 +32,6 @@ public class NoSignal {
 			public ItemStack getTabIconItem() {
 				return new ItemStack(Blocks.connector);
 			}};
-    	beesTabs = new CreativeTabs(MODID + " bees") {
-            @Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(Blocks.hive);
-            }
-        };
     	Registries.registerTileEntity(TileEntityConnector.class, "TileEntityConnector");
     	Registries.registerTileEntity(TileEntityLaser.class, "TileEntityLaser");
     	
