@@ -1,4 +1,4 @@
-package com.nosignal.mod.items;
+package com.nosignal.mod.items.bee;
 
 import com.nosignal.mod.main.NoSignal;
 import com.nosignal.mod.util.BeeBaseConfig;

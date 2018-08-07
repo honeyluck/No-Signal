@@ -2,8 +2,8 @@ package com.nosignal.mod.events;
 
 import com.nosignal.mod.blocks.BlockConnector;
 import com.nosignal.mod.blocks.BlockHive;
-import com.nosignal.mod.items.ItemBeeDrone;
-import com.nosignal.mod.items.ItemBeeQueen;
+import com.nosignal.mod.items.bee.ItemBeeDrone;
+import com.nosignal.mod.items.bee.ItemBeeQueen;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.main.NoSignal;
 import net.minecraft.block.Block;
