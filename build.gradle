@@ -34,15 +34,8 @@ minecraft {
 	mappings = "snapshot_20171003"
 }
 
-repositories {
-	maven {
-		name = "CoFH Maven"
-		url = "http://maven.covers1624.net"
-	}
-}
-
 dependencies {
-	deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
+	deobfCompile "cofh:RedstoneFlux:1.12-2.0.2.4:universal"
 }
 
 processResources {
