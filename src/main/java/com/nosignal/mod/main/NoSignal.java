@@ -1,9 +1,6 @@
 package com.nosignal.mod.main;
 
 import com.nosignal.mod.events.Registries;
-import com.nosignal.mod.events.Registries.Blocks;
-import com.nosignal.mod.tileentity.TileEntityConnector;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -30,28 +27,26 @@ public class NoSignal {
     	tab = new CreativeTabs(MODID) {
 			@Override
 			public ItemStack getTabIconItem() {
-				return new ItemStack(Blocks.connector);
+                return new ItemStack(Registries.BLOCK_CONNECTOR);
 			}};
+
     	beesTabs = new CreativeTabs(MODID + " bees") {
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Blocks.hive);
+                return new ItemStack(Registries.BLOCK_HIVE);
             }
         };
-    	Registries.registerTileEntity(TileEntityConnector.class, "TileEntityConnector");
-    	
-    	proxy.preInit();
+
+        proxy.preInit();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
-
     	proxy.init();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-
     	proxy.postInit();
     }
 
