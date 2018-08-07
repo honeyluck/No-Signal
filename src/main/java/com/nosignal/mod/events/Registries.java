@@ -5,6 +5,7 @@ import com.nosignal.mod.blocks.BlockHive;
 import com.nosignal.mod.items.bee.ItemBeeDrone;
 import com.nosignal.mod.items.bee.ItemBeeQueen;
 import com.nosignal.mod.items.ItemWire;
+import com.nosignal.mod.items.bee.ItemHoneyComb;
 import com.nosignal.mod.main.NoSignal;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -56,12 +57,13 @@ public class Registries {
 
     public static class Items {
     	
-    	public static Item wire, bee_drone, bee_queen;
+    	public static Item wire, bee_drone, bee_queen, honey_comb;
     	
         public static void init() {
         	wire = register(new ItemWire(), "wire");
         	bee_drone = register(new ItemBeeDrone(),"drone");
         	bee_queen = register(new ItemBeeQueen(),"queen");
+        	honey_comb = register(new ItemHoneyComb(),"honeycomb");
         }
         
         public static Item register(Item item, String name) {
