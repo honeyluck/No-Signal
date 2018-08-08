@@ -1,7 +1,9 @@
 package com.nosignal.mod.util.common;
 
+import com.nosignal.mod.blocks.INeedItem;
 import com.nosignal.mod.events.Registries;
 import com.nosignal.mod.main.NoSignal;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -23,7 +25,8 @@ public class RegUtils {
         block.setUnlocalizedName(rl.toString());
         block.setRegistryName(rl);
         Registries.BLOCKS.add(block);
-        Registries.ITEMS.add(new ItemBlock(block).setRegistryName(rl));
+        if(!(block instanceof INeedItem))Registries.ITEMS.add(new ItemBlock(block).setRegistryName(rl));
+        Registries.ITEMS.add(((INeedItem)block).getItem().setRegistryName(rl));
         return block;
     }
 
