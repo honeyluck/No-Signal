@@ -26,7 +26,7 @@ public class RegUtils {
         block.setRegistryName(rl);
         Registries.BLOCKS.add(block);
         if(!(block instanceof INeedItem))Registries.ITEMS.add(new ItemBlock(block).setRegistryName(rl));
-        Registries.ITEMS.add(((INeedItem)block).getItem().setRegistryName(rl));
+        else Registries.ITEMS.add(((INeedItem)block).getItem().setRegistryName(rl));
         return block;
     }
 

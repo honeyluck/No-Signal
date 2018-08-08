@@ -1,11 +1,13 @@
 package com.nosignal.mod.blocks;
 
 import com.nosignal.mod.tileentity.TileEntityLaser;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -46,8 +48,21 @@ public class BlockLaser extends BlockTileBase {
 	}
 
 	@Override
-	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return 15;
+	public int getStrongPower(IBlockState s, IBlockAccess w, BlockPos pos, EnumFacing side) {
+		TileEntity te = w.getTileEntity(pos);
+		if(te != null && te instanceof TileEntityLaser) {
+			return ((TileEntityLaser)te).isOn ? 15 : 0;
+		}
+		return 0;
+	}
+
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess w, BlockPos pos, EnumFacing side) {
+		TileEntity te = w.getTileEntity(pos);
+		if(te != null && te instanceof TileEntityLaser) {
+			return ((TileEntityLaser)te).isOn ? 15 : 0;
+		}
+		return 0;
 	}
 
 }

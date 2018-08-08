@@ -2,6 +2,7 @@ package com.nosignal.mod.tileentity;
 
 import com.nosignal.mod.blocks.BlockLaser;
 import com.nosignal.mod.util.Helper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class TileEntityLaser extends TileEntity implements ITickable {
 
-    public boolean isOn;
+    public boolean isOn = false;
     public int offTicks = 0;
 
     public TileEntityLaser() {
@@ -51,7 +52,7 @@ public class TileEntityLaser extends TileEntity implements ITickable {
             Vec3d ray = Helper.getVecForFace(face).scale(7D);
             AxisAlignedBB bb = Block.FULL_BLOCK_AABB.offset(this.getPos().offset(face)).expand(ray.x, ray.y, ray.z);
             if (world.getEntitiesWithinAABB(Entity.class, bb).size() > 0) {
-                System.out.println("he");
+               this.isOn = true;
             }
         }
     }
