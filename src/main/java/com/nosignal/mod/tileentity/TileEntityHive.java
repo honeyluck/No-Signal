@@ -4,8 +4,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
 public class TileEntityHive extends TileEntity implements ITickable {
-    @Override
-    public void update() {
-
-    }
+	@Override
+	public void update() {
+		
+	}
 }

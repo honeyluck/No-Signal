@@ -27,7 +27,7 @@ public class ItemWire extends Item {
 		this.setCreativeTab(NoSignal.tab);
 		this.setMaxStackSize(1);
 	}
-
+	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if(worldIn.getTileEntity(pos) instanceof IEnergyConnector) {
@@ -48,7 +48,7 @@ public class ItemWire extends Item {
 		}
 		return EnumActionResult.SUCCESS;
 	}
-
+	
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
@@ -61,7 +61,7 @@ public class ItemWire extends Item {
 			}
 		}
 	}
-
+	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if(Helper.getItemTag(stack).hasKey(NBT.START_POINT)) {
@@ -69,7 +69,7 @@ public class ItemWire extends Item {
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
-
+	
 	public static class NBT{
 		public static final String START_POINT = "connection_point";
 	}

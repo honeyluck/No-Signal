@@ -1,8 +1,8 @@
 package com.nosignal.mod.interfaces;
 
-import net.minecraft.util.math.BlockPos;
-
 import java.util.List;
+
+import net.minecraft.util.math.BlockPos;
 
 public interface IEnergyConnector {
 	

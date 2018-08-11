@@ -15,38 +15,38 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockLaser extends BlockTileBase {
-
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-
-    public BlockLaser() {
-        super(Material.IRON, TileEntityLaser::new);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getHorizontalIndex();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
-    }
-
-    @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
-    }
-
+	
+	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+	
+	public BlockLaser() {
+		super(Material.IRON, TileEntityLaser::new);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FACING).getHorizontalIndex();
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FACING);
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+	}
+	
 	@Override
 	public boolean canProvidePower(IBlockState state) {
 		return true;
 	}
-
+	
 	@Override
 	public int getStrongPower(IBlockState s, IBlockAccess w, BlockPos pos, EnumFacing side) {
 		TileEntity te = w.getTileEntity(pos);
@@ -55,7 +55,7 @@ public class BlockLaser extends BlockTileBase {
 		}
 		return 0;
 	}
-
+	
 	@Override
 	public int getWeakPower(IBlockState blockState, IBlockAccess w, BlockPos pos, EnumFacing side) {
 		TileEntity te = w.getTileEntity(pos);
@@ -64,5 +64,5 @@ public class BlockLaser extends BlockTileBase {
 		}
 		return 0;
 	}
-
+	
 }
