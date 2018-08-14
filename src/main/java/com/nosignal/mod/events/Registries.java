@@ -6,6 +6,7 @@ import java.util.List;
 import com.nosignal.mod.blocks.BlockConnector;
 import com.nosignal.mod.blocks.BlockHive;
 import com.nosignal.mod.blocks.BlockLaser;
+import com.nosignal.mod.items.ItemMarker;
 import com.nosignal.mod.items.ItemWire;
 import com.nosignal.mod.items.bee.ItemBeeDrone;
 import com.nosignal.mod.items.bee.ItemBeeQueen;
@@ -36,6 +37,7 @@ public class Registries {
 	public static Item ITEM_BEE_DRONE = RegUtils.createItem(new ItemBeeDrone(), "drone");
 	public static Item ITEM_BEE_QUEEN = RegUtils.createItem(new ItemBeeQueen(), "queen");
 	public static Item ITEM_HONEY_COMB = RegUtils.createItem(new ItemHoneyComb(), "honeycomb");
+	public static Item ITEM_MARKER = RegUtils.createItem(new ItemMarker(), "marker");
 	
 	//Blocks
 	public static Block BLOCK_CONNECTOR = RegUtils.createBlock(new BlockConnector(), "connector");
